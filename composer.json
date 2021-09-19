@@ -1,0 +1,19 @@
+{
+    "name": "felipeoli7eira/php-profissional",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        },
+        "files": [
+            "app/helpers/constants.php",
+            "app/router/router.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "felipeoli7eira",
+            "email": "felipe.oliveira@wapstore.com.br"
+        }
+    ],
+    "require": {}
+}
