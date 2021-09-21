@@ -25,13 +25,13 @@ function dynamicRoutesWithRegularExp(string $currentURI, array $routes): array
     return array_filter($routes, $arrayFilterCallback, ARRAY_FILTER_USE_KEY);
 }
 
-function params(string $currentURI, $matchedURI): array
+function params($currentURI, $matchedURI): array
 {
     if (!empty($matchedURI)) {
         $mathedToGetparams = current(array_keys($matchedURI));
 
         return array_diff(
-            explode('/', ltrim($currentURI)),
+            $currentURI,
             explode('/', ltrim($mathedToGetparams))
         );
     }
@@ -39,15 +39,13 @@ function params(string $currentURI, $matchedURI): array
     return [];
 }
 
-function paramsFormat(string $currentURI, array $params): array
+function paramsFormat($currentURI, array $params): array
 {
-    $explodedURI = explode('/', ltrim($currentURI));
-
     $paramsData = [];
 
     foreach($params as $index => $param) {
 
-        $paramsData[ $explodedURI [ $index - 1 ] ] = $param;
+        $paramsData[ $currentURI [ $index - 1 ] ] = $param;
     }
 
     return $paramsData;
@@ -60,12 +58,20 @@ function router()
 
     $uri = findExactUriInArrayRoutes($currentURI, $routes);
 
+    $params = [];
+
     if (empty($uri)) {
         $uri = dynamicRoutesWithRegularExp($currentURI, $routes);
 
-        $params = params($currentURI, $uri);
-        $params = paramsFormat($currentURI, $params);
+        $explodeCurrentURI = explode('/', ltrim($currentURI));
+        $params = params($explodeCurrentURI, $uri);
+        $params = paramsFormat($explodeCurrentURI, $params);
     }
 
-    return $uri;
+    if (!empty($uri)) {
+        controller($uri, $params);
+        return;
+    }
+
+    throw new Exception('Erro inesperado nas rotas...');
 }

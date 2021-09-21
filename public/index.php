@@ -2,4 +2,12 @@
 
 require __DIR__ . '/bootstrap.php';
 
-var_dump(router());
+
+try
+{
+    router();
+}
+catch(\Exception $exception)
+{
+    var_dump($exception->getMessage());
+}

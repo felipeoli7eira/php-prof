@@ -6,7 +6,8 @@
         },
         "files": [
             "app/helpers/constants.php",
-            "app/router/router.php"
+            "app/router/router.php",
+            "app/core/controller.php"
         ]
     },
     "authors": [
