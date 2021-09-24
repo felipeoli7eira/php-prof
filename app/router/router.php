@@ -69,8 +69,7 @@ function router()
     }
 
     if (!empty($uri)) {
-        controller($uri, $params);
-        return;
+        return controller($uri, $params);
     }
 
     throw new Exception('Erro inesperado nas rotas...');

@@ -1,0 +1,1 @@
+<h1>Welcome to home <?= $user_name ?></h1>

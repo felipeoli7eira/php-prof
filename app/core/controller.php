@@ -16,5 +16,5 @@ function controller($mathedURI, $params)
     }
 
     $controller = new $controllerWithNamespaceConcat;
-    $controller->$method($params);
+    return $controller->$method($params);
 }
