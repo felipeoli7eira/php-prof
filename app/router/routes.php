@@ -12,6 +12,6 @@ return [
     '/user/[a-z0-9]+' => 'User@index',
 
     /***/
-    '/user/[a-z0-9]+/name/[a-z]+' => 'User@show'
+    '/user/[0-9]+/' => 'User@show'
 
 ];

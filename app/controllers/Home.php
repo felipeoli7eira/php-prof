@@ -6,9 +6,11 @@ class Home
 {
     public function index($params)
     {
+        $users = fetchAll('user');
+
         return [
             'view' => 'home.php',
-            'data' => ['user_name' => 'Felipe Oliveira']
+            'data' => ['title' => 'Home', 'users' => $users]
         ];
     }
 }

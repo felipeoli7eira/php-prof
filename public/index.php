@@ -6,6 +6,10 @@ try
 {
     $data = router();
 
+    if ( !isset($data['data']) ) {
+        throw new Exception('O indice data não foi passado.');
+    }
+
     if ( !array_key_exists('view', $data) ) {
         throw new Exception('view not found in return of the method...');
     }
